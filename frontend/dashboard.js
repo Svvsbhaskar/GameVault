@@ -4,6 +4,7 @@
    AUTHENTICATION + USER-SPECIFIC GAMES + LOGOUT
    USER PROFILE
    EXPIRED SESSION PROTECTION
+   DEPLOYMENT READY
    ========================================================= */
 
 
@@ -119,7 +120,7 @@ if (!checkAuthentication()) {
    ========================================================= */
 
 const API_URL =
-    "http://localhost:5000/api/games";
+    "https://gamevault-backend-uf77.onrender.com/api/games";
 
 
 /* =========================================================

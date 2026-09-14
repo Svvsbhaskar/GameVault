@@ -3,10 +3,11 @@
    LOGIN + REGISTER + JWT
    BETTER ERROR + LOADING MESSAGES
    PASSWORD VISIBILITY TOGGLE
+   DEPLOYMENT READY
    ========================================================= */
 
 const API_URL =
-    "http://localhost:5000/api/auth";
+    "https://gamevault-backend-uf77.onrender.com/api/auth";
 
 
 /* =========================================================
