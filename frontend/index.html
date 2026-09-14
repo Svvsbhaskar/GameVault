@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>GameVault</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #080b18;
+
+            color: #ffffff;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+        }
+
+        .loading {
+            text-align: center;
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            font-size: 32px;
+
+            box-shadow:
+                0 10px 35px
+                rgba(124, 58, 237, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+
+            margin-bottom: 8px;
+        }
+
+        h1 span {
+            color: #7c3aed;
+        }
+
+        p {
+            color: #7f879f;
+
+            font-size: 13px;
+        }
+
+        .loader {
+            width: 30px;
+            height: 30px;
+
+            margin: 20px auto 0;
+
+            border: 3px solid
+                rgba(255, 255, 255, 0.08);
+
+            border-top-color: #7c3aed;
+
+            border-radius: 50%;
+
+            animation:
+                spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="loading">
+
+        <div class="logo">
+            🎮
+        </div>
+
+        <h1>
+            Game<span>Vault</span>
+        </h1>
+
+        <p>
+            Loading your gaming experience...
+        </p>
+
+        <div class="loader"></div>
+
+    </div>
+
+
+    <script>
+
+        /* =====================================================
+           GAMEVAULT ENTRY POINT
+           ===================================================== */
+
+        const token =
+            localStorage.getItem(
+                "gamevaultToken"
+            );
+
+
+        const user =
+            localStorage.getItem(
+                "gamevaultUser"
+            );
+
+
+        /* =====================================================
+           CHECK LOGIN
+           ===================================================== */
+
+        if (
+            token &&
+            user
+        ) {
+
+            window.location.replace(
+                "dashboard.html"
+            );
+
+        } else {
+
+            localStorage.removeItem(
+                "gamevaultToken"
+            );
+
+            localStorage.removeItem(
+                "gamevaultUser"
+            );
+
+            window.location.replace(
+                "auth.html"
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

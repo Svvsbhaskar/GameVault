@@ -1,0 +1,11 @@
+POST http://localhost:5000/api/games
+Content-Type: application/json
+
+{
+    "name": "GTA V",
+    "genre": "Action",
+    "platform": "PC",
+    "rating": 9.2,
+    "status": "Completed",
+    "hoursPlayed": 85
+}
