@@ -9,39 +9,105 @@ const authRoutes = require("./routes/authRoutes");
 dotenv.config();
 
 const app = express();
-const PORT = 5000;
 
-// Middleware
-app.use(cors());
+const PORT =
+    process.env.PORT || 5000;
 
-// Allow JSON requests with compressed game images
-app.use(express.json({ limit: "2mb" }));
 
-// Authentication routes
-app.use("/api/auth", authRoutes);
+// =========================================================
+// CORS
+// =========================================================
 
-// Game routes
-app.use("/api/games", gameRoutes);
+// Allow requests from the frontend.
+// During local development this allows all origins.
+// We can restrict this to the deployed frontend later.
+app.use(
+    cors()
+);
 
-// Test route
-app.get("/", (req, res) => {
-    res.send("🎮 GameVault Backend is Running!");
-});
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => {
-        console.log("✅ MongoDB connected successfully!");
+// =========================================================
+// BODY PARSER
+// =========================================================
 
-        app.listen(PORT, () => {
-            console.log(
-                `🎮 GameVault server running on http://localhost:${PORT}`
-            );
-        });
+// Allow JSON requests with compressed game images.
+app.use(
+    express.json({
+        limit: "2mb"
     })
-    .catch((error) => {
-        console.error(
-            "❌ MongoDB connection failed:",
-            error.message
+);
+
+
+// =========================================================
+// AUTHENTICATION ROUTES
+// =========================================================
+
+app.use(
+    "/api/auth",
+    authRoutes
+);
+
+
+// =========================================================
+// GAME ROUTES
+// =========================================================
+
+app.use(
+    "/api/games",
+    gameRoutes
+);
+
+
+// =========================================================
+// TEST ROUTE
+// =========================================================
+
+app.get(
+    "/",
+    (req, res) => {
+
+        res.send(
+            "🎮 GameVault Backend is Running!"
         );
-    });
+
+    }
+);
+
+
+// =========================================================
+// CONNECT TO MONGODB
+// =========================================================
+
+mongoose
+    .connect(
+        process.env.MONGODB_URI
+    )
+    .then(() => {
+
+        console.log(
+            "✅ MongoDB connected successfully!"
+        );
+
+
+        app.listen(
+            PORT,
+            () => {
+
+                console.log(
+                    `🎮 GameVault server running on port ${PORT}`
+                );
+
+            }
+        );
+
+    })
+    .catch(
+        (error) => {
+
+            console.error(
+                "❌ MongoDB connection failed:",
+                error.message
+            );
+
+        }
+    );
